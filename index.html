@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Re:Frame - Same Frame, Different Vision</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="web-container">
+
+        <header>
+            <div class="logo">Re:Frame</div>
+            <nav class="top-nav">
+                <a href="#main-banner">홈</a>
+                <a href="#features-anchor">서비스 소개</a>
+                <a href="#dashboard-anchor">대시보드</a>
+                <a href="#feed-anchor">집단지성 피드</a>
+                <a href="#note-anchor">되새김 노트</a>
+            </nav>
+        </header>
+
+        <section id="main-banner" class="main-banner">
+            <h2>Same Frame,<br>Different Vision</h2>
+            <p>영화를 해석하고, 공유하며<br>새로운 시선을 발견하세요.</p>
+            <a href="#dashboard-anchor" class="start-btn">실시간 분석 시작하기</a>
+        </section>
+
+        <section class="curation-section">
+            <div class="curation-left">
+                <div class="sub-badge">TODAY'S SELECTION</div>
+                <h3 class="curation-title">오늘 본 영화 분석</h3>
+                <div class="today-movie-card" onclick="openCurationModal('today_interstellar')">
+                    <div class="today-poster">🌌</div>
+                    <div class="today-info">
+                        <h4>인터스텔라 (Interstellar)</h4>
+                        <p class="movie-meta-text">2014 • 크리스토퍼 놀란 감독 • SF 서사</p>
+                        <span class="analysis-status-tag">👀 클릭하여 3개의 핵심 연출 의도 브리핑 보기</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="curation-right">
+                <div class="sub-badge">POPULAR INTERPRETATION</div>
+                <h3 class="curation-title">실시간 인기 해석 큐레이션</h3>
+                <div class="curation-list">
+                    <div class="curation-item" onclick="openCurationModal('trend_inception')">
+                        <span class="trending-num">01</span>
+                        <div class="item-body">
+                            <h5>인셉션 결말의 팽이와 코브의 결혼반지 상관관계</h5>
+                            <p>유저들이 가장 많이 질문한 미장센 단서 추적 리포트</p>
+                        </div>
+                    </div>
+                    <div class="curation-item" onclick="openCurationModal('trend_lalaland')">
+                        <span class="trending-num">02</span>
+                        <div class="item-body">
+                            <h5>라라랜드 'A Lovely Night' 6분 롱테이크 카메라 구도</h5>
+                            <p>데이미언 셔젤 감독이 고집한 고전 뮤지컬 연출 오마주 해석</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <div id="curationModal" class="modal-overlay d-none" onclick="closeCurationModal(event)">
+            <div class="modal-content animate-popup">
+                <div class="modal-header">
+                    <div class="modal-badge" id="modalBadge">POPULAR REPORT</div>
+                    <button class="modal-close-btn" onclick="document.getElementById('curationModal').classList.add('d-none')">&times;</button>
+                </div>
+                <h4 class="modal-title" id="modalTitle">해석 타이틀</h4>
+                <div class="modal-body" id="modalBody">
+                    </div>
+                <div class="modal-footer">
+                    <span class="modal-footer-logo">Re:Frame Core Analysis</span>
+                    <button class="modal-action-btn" onclick="document.getElementById('curationModal').classList.add('d-none')">확인 및 닫기</button>
+                </div>
+            </div>
+        </div>
+
+        <div id="features-anchor"></div>
+        <section class="features-section">
+            <h3 class="section-title">Core Features</h3>
+            <div class="features-grid">
+                <div class="feature-card" onclick="location.href='#dashboard-anchor'">
+                    <div class="feature-icon">🎬</div>
+                    <h4>AI 장면 대화</h4>
+                    <p>내가 궁금한 장면의 시간이나 연출 서사를 입력하면 구도, 색감, 연출 의도를 실시간 분석하고 대화합니다.</p>
+                </div>
+                <div class="feature-card" onclick="location.href='#feed-anchor'">
+                    <div class="feature-icon">👥</div>
+                    <h4>집단지성 피드</h4>
+                    <p>동일한 장면에 대한 다른 시청자들의 다양한 해석 공유 및 감독 인터뷰 DB를 기반으로 토론합니다.</p>
+                </div>
+                <div class="feature-card" onclick="location.href='#note-anchor'">
+                    <div class="feature-icon">✍️</div>
+                    <h4>되새김 노트</h4>
+                    <p>AI의 맞춤형 질문을 통해 스스로 생각하고 나만의 분석 정취를 기록하는 공간입니다.</p>
+                </div>
+            </div>
+        </section>
+
+        <div id="dashboard-anchor"></div>
+        <section class="preview-section">
+            <h3 class="section-title">Interactive Dual View Dashboard</h3>
+            <p class="section-desc">분석하고 싶은 영화를 고른 뒤, 오른쪽 대시보드 창에 궁금한 장면이나 결말, 미장센 질문을 자유롭게 던져보세요.</p>
+            
+            <div class="dual-view-container">
+                <div class="player-area" id="playerArea">
+                    <div class="poster-selection-screen" id="posterSelection">
+                        <div class="selection-title">분석 작품 아카이브</div>
+                        <div class="poster-grid">
+                            <div class="poster-card" onclick="selectMovie('interstellar')">
+                                <div class="poster-graphic interstellar-bg">🌌</div>
+                                <span class="poster-title">인터스텔라</span>
+                                <span class="poster-meta">크리스토퍼 놀란 감독</span>
+                            </div>
+                            <div class="poster-card" onclick="selectMovie('lalaland')">
+                                <div class="poster-graphic lalaland-bg">💃🏻</div>
+                                <span class="poster-title">라라랜드</span>
+                                <span class="poster-meta">데이미언 셔젤 감독</span>
+                            </div>
+                            <div class="poster-card" onclick="selectMovie('inception')">
+                                <div class="poster-graphic inception-bg">🌀</div>
+                                <span class="poster-title">인셉션</span>
+                                <span class="poster-meta">크리스토퍼 놀란 감독</span>
+                            </div>
+                            <div class="poster-card" onclick="selectMovie('headmovie')">
+                                <div class="poster-graphic headmovie-bg">🎞️</div>
+                                <span class="poster-title">헤드무비</span>
+                                <span class="poster-meta">Re:Frame 에디토리얼</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="video-mock d-none" id="videoPlayerView">
+                        <button class="back-to-list-btn" onclick="resetDashboard()">← 다른 영화 선택</button>
+                        <div class="active-poster-display" id="activePosterVisual">🎬</div>
+                        <div class="play-overlay">
+                            <span class="movie-title-text" id="activeMovieTitle">영화 제목</span>
+                        </div>
+                        <div class="timeline-floating-bar">
+                            <span class="time-stamp" id="activeTimelineTime">00:00:00</span>
+                            <div class="progress-bar-track">
+                                <div class="progress-bar-fill" id="progressBarFill" style="width: 0%;"></div>
+                                <div class="progress-pointer" id="progressPointer" style="left: 0%;"></div>
+                            </div>
+                            <span class="scene-tag" id="activeSceneTag">장면 탐색 중</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="chatbot-area">
+                    <div class="chat-header">
+                        <span class="status-dot"></span> Re:Frame AI 시네마 도슨트 <span id="chatMovieContext" style="font-size:12px; color:var(--text-gray); margin-left:6px;"></span>
+                    </div>
+                    <div class="chat-messages" id="chatMessages">
+                        <div class="message ai" id="initialAiMessage">
+                            <div class="sender">Re:Frame AI</div>
+                            <div class="bubble">안녕하세요! Re:Frame AI 시네마 도슨트입니다.<br><br>영화 속 수많은 은유와 감독의 연출 의도를 깊이 있게 파헤치기 위해, **우선 왼쪽 아카이브에서 분석할 작품을 선택**해 주세요. 자기가 원하는 타임라인을 직접 질문해주셔도 인식합니다.</div>
+                        </div>
+                    </div>
+                    <div class="chat-input-area">
+                        <input type="text" id="chatInput" placeholder="왼쪽에서 영화를 먼저 선택해 주세요" autocomplete="off" disabled>
+                        <button id="sendBtn" disabled>전송</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <div id="feed-anchor"></div>
+        <section class="feed-section">
+            <h3 class="section-title">집단지성 피드 <span>장면 피드 실시간 토론</span></h3>
+            <div class="feed-container">
+                <div class="feed-item">
+                    <div class="feed-user">Cinema_Lee <span class="feed-time">2시간 전</span></div>
+                    <p class="feed-text">인터스텔라 서재 신에서 아버지가 딸에게 시공간을 넘어 메시지를 전달하는 방식은 사랑이라는 감정이 차원의 경계를 부수는 가장 아름다운 연출이었습니다.</p>
+                    <div class="feed-actions">
+                        <button class="like-btn" onclick="toggleLike(this, 128)">❤️ <span class="like-count">128</span></button>
+                        <span class="comment-mock">💬 댓글 8</span>
+                    </div>
+                </div>
+                <div class="feed-item">
+                    <div class="feed-user">MovieThinker <span class="feed-time">4시간 전</span></div>
+                    <p class="feed-text">라라랜드에서 오디션 신의 푸른 조명과 마지막 회상 신의 교차 레이아웃은 현실의 쓸쓸함และ 꿈의 찬란한 흔적을 동시에 보존하는 마법 같은 편집 기법이네요.</p>
+                    <div class="feed-actions">
+                        <button class="like-btn" onclick="toggleLike(this, 96)">❤️ <span class="like-count">96</span></button>
+                        <span class="comment-mock">💬 댓글 5</span>
+                    </div>
+                </div>
+                <div class="feed-item">
+                    <div class="feed-user">Film_Archive <span class="feed-time">5시간 전</span></div>
+                    <p class="feed-text">인셉션 결말의 팽이에 집착하기보다 코브가 반지를 뺐는지 꼈는지를 추적하는 미장센 분석이 정설로 와닿네요. 놀란의 정교한 트릭에 소름 돋았습니다.</p>
+                    <div class="feed-actions">
+                        <button class="like-btn" onclick="toggleLike(this, 74)">❤️ <span class="like-count">74</span></button>
+                        <span class="comment-mock">💬 댓글 3</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <div id="note-anchor"></div>
+        <section class="note-section">
+            <h3 class="section-title">되새김 노트</h3>
+            <p class="section-desc">AI가 큐레이션한 인상 깊은 연출 포인트를 바탕으로 나만의 독창적인 시네마 노트를 기록해 보세요.</p>
+            
+            <div class="note-workspace">
+                <div class="note-input-box">
+                    <input type="text" id="noteTitle" placeholder="노트 제목을 입력하세요 (예: 라라랜드 색채학적 은유 고찰)">
+                    <textarea id="noteContent" placeholder="단순 감상을 넘어 영화를 온전히 소유하는 나만의 해석과 생각을 기록해 보세요..."></textarea>
+                    <button id="saveNoteBtn">되새김 노트 아카이빙 저장</button>
+                </div>
+                
+                <div class="note-archive-box">
+                    <h4>나의 아카이빙 기록집 (<span id="noteCount">2</span>)</h4>
+                    <div class="archive-list" id="archiveList">
+                        <div class="archive-item">
+                            <h5>블랙홀 '가르강튀아'의 시각 효과</h5>
+                            <p>실제 물리학적 고증을 바탕으로 구현된 웜홀의 비주얼은 우주의 경외감과 경계에 선 인간의 심리를 완벽하게 대변한다.</p>
+                            <span class="archive-date">2026.05.20</span>
+                        </div>
+                        <div class="archive-item">
+                            <h5>밀러 행성 착륙 시의 사운드 디자인</h5>
+                            <p>배경음으로 규칙적으로 들리는 초침 소리는 시간이 곧 생명이라는 압박감을 청각적으로 변조해 극적 긴장감을 더한 명연출이다.</p>
+                            <span class="archive-date">2026.05.20</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <footer>
+            <div class="footer-logo-box" style="background: var(--purple-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; font-weight:900; font-size:22px; margin-bottom:16px; text-align:center;">Re:Frame</div>
+            <p class="footer-phrase">"영화는 끝나는 순간이 아니라, 대화가 시작되는 순간이다"</p>
+            <p class="copyright">© 2026 Re:Frame. All rights reserved.</p>
+        </footer>
+
+    </div>
+
+    <script>
+        const curationDatabase = {
+            today_interstellar: {
+                badge: "TODAY'S MOVIE REPORT",
+                title: "인터스텔라 (Interstellar) 시네마틱 심층 분석 요약",
+                body: `
+                    <div class="modal-report-block">
+                        <strong>1. 책장 너머의 다차원 기하학 구조</strong>
+                        <p>격자 구조의 책장 사이로 스며드는 슬릿 광원들은 닿을 수 없는 다차원 간의 벽을 상징하며, 후반 5차원 공간 테서랙트 구조의 완벽한 미장센 복선으로 작용합니다.</p>
+                    </div>
+                    <div class="modal-report-block">
+                        <strong>2. 황금빛 웜톤 vs 우주의 다크 블루</strong>
+                        <p>지구와 서재의 아늑한 황금빛 색채는 가족애와 기억의 밀도를 뜻하며, 차갑고 적막한 우주 공간의 다크 블루와 완벽한 보색 대비를 이룹니다.</p>
+                    </div>
+                `
+            },
+            trend_inception: {
+                badge: "MOST POPULAR REPORT",
+                title: "인셉션 결말의 팽이와 코브의 결혼반지 상관관계",
+                body: `
+                    <div class="modal-report-block">
+                        <strong>핵심 미장센 추적: 왼손의 결혼반지</strong>
+                        <p>많은 이들이 결말부의 회전하는 토템 팽이에 시선을 빼앗기지만, 놀란 감독이 숨겨둔 절대적인 진실 장치는 코브의 <strong>'결혼반지'</strong>입니다. 꿈속에서는 항상 반지를 끼고 있지만, 현실 세계 시퀀스에서는 반지를 빼고 있어 결말은 완벽한 현실임을 암시합니다.</p>
+                    </div>
+                `
+            },
+            trend_lalaland: {
+                badge: "TRENDING EDITORIAL",
+                title: "라라랜드 'A Lovely Night' 6분 롱테이크 카메라 구도",
+                body: `
+                    <div class="modal-report-block">
+                        <strong>1. 원테이크 롱테이크 구성</strong>
+                        <p>데이미언 셔젤 감독은 인물의 스텝과 전신 동선을 분할 컷 없이 풀샷으로 길게 이어가며, 작위성이 배제된 두 청춘의 감정 싱크로율을 관객에게 날것 그대로 전달합니다.</p>
+                    </div>
+                `
+            }
+        };
+
+        function openCurationModal(key) {
+            const data = curationDatabase[key];
+            if(!data) return;
+            document.getElementById('modalBadge').innerText = data.badge;
+            document.getElementById('modalTitle').innerText = data.title;
+            document.getElementById('modalBody').innerHTML = data.body;
+            document.getElementById('curationModal').classList.remove('d-none');
+        }
+
+        function closeCurationModal(e) {
+            if(e.target === document.getElementById('curationModal')) {
+                document.getElementById('curationModal').classList.add('d-none');
+            }
+        }
+
+        // 영화별 상호작용 데이터베이스 엔진 (라라랜드 완벽 버그 튜닝판)
+        const movieDatabase = {
+            interstellar: {
+                title: "인터스텔라 (Interstellar)",
+                emoji: "🌌",
+                color: "linear-gradient(180deg, #101026 0%, #030308 100%)",
+                welcome: "영화 **'인터스텔라'** 분석 모드를 활성화합니다.\n\n'서재 신', '색감 분석', '블랙홀 연출' 등 궁금한 핵심 맥락을 자유롭게 입력해 주세요.",
+                analyze: function(q) {
+                    if (q.includes('책장') || q.includes('서재') || q.includes('아빠') || q.includes('딸') || q.includes('미장센') || q.includes('의도')) {
+                        updateTimeline("01:25:48", "75%", "책장 너머의 순간");
+                        return "질문하신 **[01:25:48 - 서재 장면]** 미장센 분석입니다.\n\n격자 형태의 소품 배치와 슬릿 조명은 '닿을 수 없는 다차원 간의 장벽'을 은유합니다. 이는 후반부 5차원 테서랙트 공간의 기하학적 복선으로 완벽하게 연동되는 핵심 설계 구역입니다.";
+                    }
+                    if (q.includes('색') || q.includes('조명') || q.includes('빛')) {
+                        updateTimeline("01:25:48", "75%", "서재 조명 분석");
+                        return "서재의 황금빛 웜톤 조명은 지구에서의 '밀도 높은 행복한 기억'을 대변하며, 차가운 외우주 공간(다크 블루)과 완벽한 명암 대비를 이룹니다.";
+                    }
+                    updateTimeline("00:15:20", "12%", "기본 씬 분석");
+                    return "입력하신 뉘앙스를 기반으로 스캔했습니다. 크리스토퍼 놀란 감독은 아날로그적 질감을 극대화하기 위해 실제 거대 세트를 제작해 촬영하는 것이 특징입니다.";
+                }
+            },
+            lalaland: {
+                title: "라라랜드 (La La Land)",
+                emoji: "💃🏻",
+                color: "linear-gradient(180deg, #3a1c5c 0%, #100520 100%)",
+                welcome: "영화 **'라라랜드'** 분석 모드를 활성화합니다.\n\n'미장센 의도', '오디션 조명', '노란 원피스' 등 기획서 핵심 키워드를 입력해 보세요!",
+                analyze: function(q) {
+                    // 🌟 [최상위 분기 버그 수정] '미장센', '의도' 단어가 먼저 가로채서 놀란 감독 대답이 안 나오게 전면 재배치
+                    if (q.includes('미장센') || q.includes('의도') || q.includes('기법') || q.includes('연출')) {
+                        if (q.includes('조명') || q.includes('오디션') || q.includes('파란')) {
+                            updateTimeline("01:42:05", "85%", "미아의 독백 오디션 조명");
+                            return "라라랜드 오디션 신의 **미장센 연출 의도**입니다.\n\n배경 전체를 물들이는 깊고 푸른 조명은 현실의 무겁고 쓸쓸한 압박감을 시각화하는 동시에, 오직 미아의 열망만을 스포트라이트로 투영하여 꿈을 향한 청춘의 예술적 본질을 독립적으로 강조하는 미학적 기법입니다.";
+                        }
+                        if (q.includes('원피스') || q.includes('노란') || q.includes('노랑') || q.includes('드레스')) {
+                            updateTimeline("00:38:12", "35%", "노란 원피스 미장센");
+                            return "질문하신 미아의 **노란 원피스 미장센 의도**입니다.\n\n노란색은 새로운 도약에 대한 '생동감 넘치는 찬란한 꿈'을 뜻하며, 노을이 지는 배경의 보랏빛 석양과 강렬한 보색 관계를 이루어 인물을 화면 내부에서 가장 돋보이게 만드는 효과적인 선택입니다.";
+                        }
+                        updateTimeline("00:42:15", "42%", "A Lovely Night 미장센");
+                        return "데이미언 셔젤 감독이 구현한 라라랜드의 **핵심 미장센 기법** 고찰입니다.\n\n라라랜드는 원색의 색채학적 대비를 통해 내러티브를 전개합니다. 현실의 고독을 뜻하는 파란색 조명과 찬란한 꿈을 뜻하는 노란색 의상을 충돌시켜 인물들의 심리를 대변하며, 6분간 분할 컷 없는 롱테이크 구도를 통해 두 남녀의 정서적 교감을 시각화하는 의도를 가집니다.";
+                    }
+                    // 개별 키워드 분기 보강
+                    if (q.includes('조명') || q.includes('오디션') || q.includes('파란색') || q.includes('푸른')) {
+                        updateTimeline("01:42:05", "85%", "미아의 독백 오디션");
+                        return "질문하신 **[01:42:05 - 오디션 독백 씬]**의 조명 연출 의도입니다.\n\n배경 전체를 어둡고 푸르게 다운시켜 고독감을 극대화하고 미아에게만 시선을 고정시키는 정교한 스포트라이트를 통해, 거대 기성 사회의 압박과 그에 굴하지 않는 청춘의 찬란한 열망을 시각화합니다.";
+                    }
+                    if (q.includes('원피스') || q.includes('노란') || q.includes('노랑') || q.includes('색채')) {
+                        updateTimeline("00:38:12", "35%", "노란 원피스와 매직아워");
+                        return "질문하신 미아의 대표적인 **[노란 원피스(Yellow Dress)]** 색채학 분석입니다.\n\n노란색은 예술적 생동감과 새로운 시작에 대한 '찬란한 열망'을 상징합니다. 특히 황황한 매직아워의 보랏빛 노을 배경과 보색 관계를 이루어, 넓은 프레임 안에서 인물 자체를 하나의 독창적이고 아름다운 시각 소품으로 부각시킵니다.";
+                    }
+                    if (q.includes('탭댄스') || q.includes('언덕') || q.includes('춤') || q.includes('롱테이크')) {
+                        updateTimeline("00:42:15", "42%", "A Lovely Night 구도");
+                        return "질문하신 **[00:42:15 - 언덕 위 탭댄스 씬]** 카메라 워킹입니다.\n\n데이미언 셔젤 감독은 인물의 역동적인 스텝과 감정선을 컷 분할 없이 6분간 이어가는 '원테이크 롱테이크' 풀샷 구도로 고집했습니다. 인위적인 교차 편집을 배제하여 두 청춘 사이에 자연스럽게 동기화되는 호흡과 정서적 비트를 관객이 날것 그대로 수렴하게 만듭니다.";
+                    }
+                    if (q.includes('결말') || q.includes('마지막') || q.includes('회상') || q.includes('피아노')) {
+                        updateTimeline("01:55:30", "95%", "에필로그 다른 미래");
+                        return "**[01:55:30 - 마지막 피아노 연주 에필로그]** 교차 편집 레이아웃입니다.\n\n현실의 쓸쓸한 현재 시점과 가보지 못한 대체 미래의 환상을 교차 편집하여, 사랑의 상실 뒤에 남겨진 청춘의 아련한 성장과 여운을 극대화하는 명장면 연출입니다.";
+                    }
+                    updateTimeline("00:10:45", "10%", "뮤지컬 시퀀스 분석");
+                    return "라라랜드 분석 모드입니다. '미장센 의도', '오디션 조명', '노란 원피스 색채', '탭댄스 원테이크 구도' 등 원하시는 장면 키워드를 질문하시면 완벽하게 도슨트 답변이 출력됩니다.";
+                }
+            },
+            inception: {
+                title: "인셉션 (Inception)",
+                emoji: "🌀",
+                color: "linear-gradient(180deg, #202c3a 0%, #0a0e14 100%)",
+                welcome: "영화 **'인셉션'** 분석 모드를 활성화합니다.\n\n결말의 팽이 신이나 복도 무중력 액션 등 궁금한 장면을 입력해 주세요.",
+                analyze: function(q) {
+                    if (q.includes('결말') || q.includes('팽이') || q.includes('반지') || q.includes('현실') || q.includes('꿈')) {
+                        updateTimeline("02:11:05", "98%", "토템의 회전과 코브의 안식");
+                        return "**인셉션의 결말은 '진짜 현실'이 100% 맞습니다.**\n\n꿈속에서 코브는 늘 반지를 끼고 있지만, 현실에서는 반지를 빼고 있습니다. 마지막 피날레 집 장면에서 아이들을 안아 올리는 코브의 왼손에는 반지가 명백히 없습니다. 즉, 팽이의 회전 여부와 상관없이 코브가 죄책감을 털고 현실을 안식처로 마주했음을 암시하는 정교한 시각 연출입니다.";
+                    }
+                    updateTimeline("00:30:15", "25%", "드림 쉐어링 아키텍처");
+                    return "인셉션은 무의식의 다층 레이아웃 플롯을 관장합니다.";
+                }
+            },
+            headmovie: {
+                title: "헤드무비 (Head Movie)",
+                emoji: "🎞️",
+                color: "linear-gradient(180deg, #161616 0%, #050505 100%)",
+                welcome: "비주얼 필름 에세이 **'헤드무비'** 분석 모드를 활성화합니다.\n\n볼드한 서체 타이틀 레이아웃 등 궁금한 미디어가치를 물어보세요.",
+                analyze: function(q) {
+                    updateTimeline("00:01:15", "5%", "에디토리얼 타이틀 서체");
+                    return "헤드무비 오프닝 인트로 연출입니다.\n\n화면을 가득 채우는 서구 매거진 스타일의 볼드 서체 배열은 문장 자체를 하나의 독립적인 시각적 미장센 소품으로 다루는 세련된 레이아웃입니다.";
+                }
+            }
+        };
+
+        let currentMovieKey = null;
+
+        const chatInput = document.getElementById('chatInput');
+        const chatMessages = document.getElementById('chatMessages');
+        const sendBtn = document.getElementById('sendBtn');
+        const chatMovieContext = document.getElementById('chatMovieContext');
+        const posterSelection = document.getElementById('posterSelection');
+        const videoPlayerView = document.getElementById('videoPlayerView');
+        const activeMovieTitle = document.getElementById('activeMovieTitle');
+        const activeTimelineTime = document.getElementById('activeTimelineTime');
+        const activeSceneTag = document.getElementById('activeSceneTag');
+        const activePosterVisual = document.getElementById('activePosterVisual');
+        const progressBarFill = document.getElementById('progressBarFill');
+        const progressPointer = document.getElementById('progressPointer');
+
+        function selectMovie(movieKey) {
+            currentMovieKey = movieKey;
+            const movieData = movieDatabase[movieKey];
+            posterSelection.classList.add('d-none');
+            videoPlayerView.classList.remove('d-none');
+            activeMovieTitle.innerText = movieData.title;
+            activeTimelineTime.innerText = "00:00:00";
+            activeSceneTag.innerText = "궁금한 장면 탐색 대기 중";
+            progressBarFill.style.width = "0%";
+            progressPointer.style.left = "0%";
+            activePosterVisual.innerText = movieData.emoji;
+            activePosterVisual.style.background = movieData.color;
+            chatMovieContext.innerText = `• ${movieData.title} 대화 중`;
+            chatInput.disabled = false;
+            chatInput.placeholder = "ex) '오디션 조명의 의미는?', '노란 원피스 색채 분석'";
+            sendBtn.disabled = false;
+            chatMessages.innerHTML = `<div class="message ai"><div class="sender">Re:Frame AI 분석가</div><div class="bubble">${movieData.welcome}</div></div>`;
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+            chatInput.focus();
+        }
+
+        function updateTimeline(timeStr, percentStr, tagStr) {
+            activeTimelineTime.innerText = timeStr;
+            activeSceneTag.innerText = tagStr;
+            progressBarFill.style.width = percentStr;
+            progressPointer.style.left = percentStr;
+        }
+
+        function resetDashboard() {
+            currentMovieKey = null;
+            posterSelection.classList.remove('d-none');
+            videoPlayerView.classList.add('d-none');
+            chatMovieContext.innerText = "";
+            chatInput.disabled = true;
+            chatInput.placeholder = "왼쪽에서 영화를 먼저 선택해 주세요";
+            sendBtn.disabled = true;
+            chatMessages.innerHTML = `<div class="message ai"><div class="sender">Re:Frame AI</div><div class="bubble">안녕하세요! 분석할 작품을 선택해 주세요.</div></div>`;
+        }
+
+        function sendUserMessage() {
+            const text = chatInput.value.trim();
+            if(!text || !currentMovieKey) return;
+            const userMsg = document.createElement('div');
+            userMsg.className = 'message user';
+            userMsg.innerHTML = `<div class="sender">User</div><div class="bubble">${text}</div>`;
+            chatMessages.appendChild(userMsg);
+            chatInput.value = '';
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+            setTimeout(() => {
+                const aiMsg = document.createElement('div');
+                aiMsg.className = 'message ai';
+                const responseContent = movieDatabase[currentMovieKey].analyze(text);
+                aiMsg.innerHTML = `<div class="sender">Re:Frame AI 분석가</div><div class="bubble">${responseContent}</div>`;
+                chatMessages.appendChild(aiMsg);
+                chatMessages.scrollTop = chatMessages.scrollHeight;
+            }, 600);
+        }
+
+        sendBtn.addEventListener('click', sendUserMessage);
+        chatInput.addEventListener('keypress', (e) => { if(e.key === 'Enter') sendUserMessage(); });
+
+        function toggleLike(button, baseCount) {
+            const countSpan = button.querySelector('.like-count');
+            const isLiked = button.classList.toggle('liked');
+            if (isLiked) {
+                countSpan.innerText = baseCount + 1;
+                button.style.background = "rgba(224, 32, 32, 0.15)";
+                button.style.borderColor = "#e02020";
+                button.style.color = "#ff4d4d";
+            } else {
+                countSpan.innerText = baseCount;
+                button.style.background = "rgba(255, 255, 255, 0.03)";
+                button.style.borderColor = "rgba(255, 255, 255, 0.06)";
+                button.style.color = "var(--text-gray)";
+            }
+        }
+
+        const noteTitle = document.getElementById('noteTitle');
+        const noteContent = document.getElementById('noteContent');
+        const saveNoteBtn = document.getElementById('saveNoteBtn');
+        const archiveList = document.getElementById('archiveList');
+        const noteCount = document.getElementById('noteCount');
+        let count = 2;
+
+        saveNoteBtn.addEventListener('click', () => {
+            const title = noteTitle.value.trim();
+            const content = noteContent.value.trim();
+            if(!title || !content) return;
+            const newItem = document.createElement('div');
+            newItem.className = 'archive-item new-item';
+            newItem.innerHTML = `<h5>${title}</h5><p>${content}</p><span class="archive-date">방금 전 아카이빙</span>`;
+            archiveList.insertBefore(newItem, archiveList.firstChild);
+            count++;
+            noteCount.innerText = count;
+            noteTitle.value = '';
+            noteContent.value = '';
+        });
+    </script>
+</body>
+</html>
