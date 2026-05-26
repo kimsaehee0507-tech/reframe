@@ -274,3 +274,38 @@ footer { border-top: 1px solid rgba(255,255,255,0.04); padding: 60px 0; text-ali
 .copyright { font-size: 12px; color: #44444a; }
 
 .d-none { display: none !important; }
+
+
+/* 📱 스마트폰/모바일 환경 최적화 반응형 레이아웃 플러그인 */
+@media (max-width: 768px) {
+    .web-container { padding: 0 16px; }
+    header { padding: 20px 0; }
+    .top-nav { display: none; } /* 폰에서는 복잡한 상단 내비 일시 숨김 */
+    
+    .main-banner { padding: 60px 24px; margin-top: 10px; }
+    .main-banner h2 { font-size: 34px; }
+    .main-banner p { font-size: 14px; }
+    
+    /* 큐레이션 및 핵심 구역 1열로 정렬 */
+    .curation-section, .features-grid, .dual-view-container, .note-workspace { 
+        grid-template-columns: 1fr !important; 
+        flex-direction: column !important;
+        height: auto !important;
+    }
+    
+    /* 대시보드 모바일 핏 조절 */
+    .dual-view-container { height: auto !important; min-height: 500px; }
+    .chatbot-area { border-left: none !important; border-top: 1px solid rgba(255, 255, 255, 0.06); min-height: 350px; }
+    .poster-grid { grid-template-columns: 1fr 1fr !important; gap: 12px; }
+    .poster-card { padding: 12px; }
+    .poster-graphic { height: 70px; font-size: 24px; }
+    .timeline-floating-bar { width: 95%; padding: 10px; gap: 8px; }
+    .scene-tag { font-size: 10px; padding: 4px 8px; }
+    
+    /* 되새김 노트 및 피드 마감 */
+    .note-workspace { gap: 20px; }
+    
+    /* 프리미엄 모달 팝업 폰 해상도 강제 맞춤 */
+    .modal-content { width: 92% !important; padding: 24px 20px !important; margin: 0 16px; }
+    .modal-title { font-size: 17px; }
+}
